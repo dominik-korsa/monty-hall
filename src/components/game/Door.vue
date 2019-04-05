@@ -1,5 +1,5 @@
 <template>
-  <div class="door">
+  <div class="door" @click="click">
     <div class="card" :class="{ selected: selected, flipped: flipped, right: right, small: small }">
       <div class="card__face card__face--front">{{ number }}</div>
       <div class="card__face card__face--back" v-if="right">
@@ -32,6 +32,11 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  methods: {
+    click(e) {
+      this.$emit('click');
+    }
   }
 }
 </script>
@@ -40,6 +45,7 @@ export default {
   .door {
     perspective: 600px;
     margin: 16px;
+    cursor: pointer;
   }
 
   .card {
