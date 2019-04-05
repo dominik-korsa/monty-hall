@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["game"],{"7d36":function(e,n,t){"use strict";t.r(n);var a=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",{staticClass:"game"})},s=[],l={},c=l,u=t("2877"),i=Object(u["a"])(c,a,s,!1,null,null,null);n["default"]=i.exports}}]);
-//# sourceMappingURL=game.ebea0ba9.js.map
