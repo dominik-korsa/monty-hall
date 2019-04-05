@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["game"],{"7d36":function(e,n,t){"use strict";t.r(n);var s=function(){var e=this,n=e.$createElement;e._self._c;return e._m(0)},a=[function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",{staticClass:"game"},[t("h1",[e._v("This is an GAME PAGE")])])}],c=t("2877"),i={},l=Object(c["a"])(i,s,a,!1,null,null,null);n["default"]=l.exports}}]);
-//# sourceMappingURL=game.21660c89.js.map
