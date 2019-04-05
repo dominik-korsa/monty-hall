@@ -26,6 +26,7 @@
 
 <script>
 import Door from '@/components/game/Door.vue';
+
 export default {
   components: {
     Door,
@@ -72,8 +73,8 @@ export default {
       setTimeout(() => {
         this.disabled = false;
       }, 1000);
-    }
-  }
+    },
+  },
 };
 </script>
 
