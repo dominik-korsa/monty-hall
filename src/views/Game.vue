@@ -56,7 +56,7 @@ export default {
 
         setTimeout(this.dismiss, 1000);
       } else if (this.finalSelected === null) {
-        if (number == this.wrongDismissed) return;
+        if (number === this.wrongDismissed) return;
         this.disabled = true;
         this.finalSelected = number;
 
