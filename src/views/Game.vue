@@ -6,7 +6,7 @@
       :right="right === 1"
       :flipped="wrongDismissed === 1 || !!finalSelected"
       :small="wrongDismissed === 1 ||  (finalSelected && finalSelected !== 1)"
-      :gradient-color="gradientColor1"
+      :gradient-color="getGradientColor(1)"
       @click="select(1)" />
     <door
       :number="2"
@@ -14,7 +14,7 @@
       :right="right === 2"
       :flipped="wrongDismissed === 2  || !!finalSelected"
       :small="wrongDismissed === 2 || (finalSelected && finalSelected !== 2)"
-      :gradient-color="gradientColor2"
+      :gradient-color="getGradientColor(2)"
       @click="select(2)" />
     <door
       :number="3"
@@ -22,7 +22,7 @@
       :right="right === 3"
       :flipped="wrongDismissed === 3  || !!finalSelected"
       :small="wrongDismissed === 3 || (finalSelected && finalSelected !== 3)"
-      :gradient-color="gradientColor3"
+      :gradient-color="getGradientColor(3)"
       @click="select(3)" />
   </div>
 </template>
@@ -41,17 +41,6 @@ export default {
     wrongDismissed: null,
     finalSelected: null,
   }),
-  computed: {
-    gradientColor1() {
-      return this.getGradientColor(1);
-    },
-    gradientColor2() {
-      return this.getGradientColor(2);
-    },
-    gradientColor3() {
-      return this.getGradientColor(3);
-    },
-  },
   methods: {
     reset() {
       this.selected = null;
