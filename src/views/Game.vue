@@ -42,7 +42,25 @@ export default {
     right: Math.floor(Math.random() * 3) + 1,
     wrongDismissed: null,
     finalSelected: null,
+    stats: {
+      switched: {
+        wins: 0,
+        loses: 0,
+      },
+      notSwitched: {
+        wins: 0,
+        loses: 0,
+      },
+    },
   }),
+  computed: {
+    switchedWinRate() {
+      return this.stats.switched.wins / (this.stats.switched.wins + this.stats.switched.loses);
+    },
+    notSwitchedWinRate() {
+      return this.stats.notSwitched.wins / (this.stats.notSwitched.wins + this.stats.notSwitched.loses);
+    },
+  },
   created() {
     window.addEventListener('keydown', this.onkey);
   },
@@ -76,9 +94,17 @@ export default {
         if (number === this.wrongDismissed) return;
         this.disabled = true;
         this.finalSelected = number;
+        this.saveStat();
 
         setTimeout(this.reset, 3500);
       }
+    },
+    saveStat() {
+      if (this.selected === this.finalSelected) {
+        if (this.finalSelected === this.right) this.stats.notSwitched.wins += 1;
+        else this.stats.notSwitched.loses += 1;
+      } else if (this.finalSelected === this.right) this.stats.switched.wins += 1;
+      else this.stats.switched.loses += 1;
     },
     dismiss() {
       const doors = [1, 2, 3];
