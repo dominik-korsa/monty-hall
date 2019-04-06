@@ -1,12 +1,12 @@
 <template>
   <div
     class="door"
-    @click="click"
     :style="`
       --gradient-color: ${animatedGradientColor};
       --selected-opacity: ${selectedGradientOpacity};`">
     <div
       class="card"
+      @click="click"
       :class="{
         selected: selected,
         flipped: flipped,
