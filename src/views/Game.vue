@@ -95,14 +95,14 @@ export default {
             red: 76,
             green: 175,
             blue: 80,
-            alpha: 0.25,
+            alpha: 0.5,
           };
         }
         return {
           red: 244,
           green: 67,
           blue: 54,
-          alpha: 0.25,
+          alpha: 0.5,
         };
       } if (this.selected === number) {
         if (this.finalSelected === null) {
