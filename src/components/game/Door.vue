@@ -1,5 +1,10 @@
 <template>
-  <div class="door" @click="click" :style="`--gradient-color: ${animatedColor}`">
+  <div
+    class="door"
+    @click="click"
+    :style="`
+      --gradient-color: ${animatedGradientColor};
+      --selected-opacity: ${selectedGradientOpacity};`">
     <div
       class="card"
       :class="{
@@ -25,6 +30,7 @@ export default {
   name: 'door',
   data: () => ({
     tweenedGradientColor: {},
+    selectedGradientOpacity: 0,
   }),
   props: {
     number: Number,
@@ -59,18 +65,30 @@ export default {
       this.$emit('click');
     },
   },
-  created: function () {
-    this.tweenedGradientColor = Object.assign({}, this.gradientColor)
+  created() {
+    this.tweenedGradientColor = Object.assign({}, this.gradientColor);
+    this.selectedGradientOpacity = this.selected ? 1 : 0;
   },
   computed: {
-    animatedColor() {
-      const { red, green, blue, alpha } = this.tweenedGradientColor;
+    animatedGradientColor() {
+      const {
+        red,
+        green,
+        blue,
+        alpha,
+      } = this.tweenedGradientColor;
       return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+    },
+    animatedSelectedGradientOpacity() {
+      return this.selectedGradientOpacity.toFixed(2);
     },
   },
   watch: {
     gradientColor(value) {
       TweenLite.to(this.$data.tweenedGradientColor, 1, value);
+    },
+    selected(value) {
+      TweenLite.to(this.$data, 0.35, { selectedGradientOpacity: value ? 1 : 0 });
     },
   },
 };
@@ -138,11 +156,16 @@ export default {
     color: white;
     border: yellow solid;
     border-width: 0;
-    transition: border-width 250ms;
+    transition: border-width 350ms;
   }
 
   .card.selected .card__face--front {
     border-width: 4px;
+    background: #2196f3 radial-gradient(
+      circle,
+      rgba(255, 255, 0, calc( var(--selected-opacity) * 0.25 )) 0%,
+      rgba(255, 255, 0, calc( var(--selected-opacity) * 0.75 )) 100%
+    );
   }
 
   .card__face--back {
