@@ -1,29 +1,31 @@
 <template>
   <div class="game">
-    <door
-      :number="1"
-      :selected="selected === 1"
-      :right="right === 1"
-      :flipped="wrongDismissed === 1 || !!finalSelected"
-      :small="wrongDismissed === 1 ||  (finalSelected && finalSelected !== 1)"
-      :gradient-color="getGradientColor(1)"
-      @click="select(1)" />
-    <door
-      :number="2"
-      :selected="selected === 2"
-      :right="right === 2"
-      :flipped="wrongDismissed === 2  || !!finalSelected"
-      :small="wrongDismissed === 2 || (finalSelected && finalSelected !== 2)"
-      :gradient-color="getGradientColor(2)"
-      @click="select(2)" />
-    <door
-      :number="3"
-      :selected="selected === 3"
-      :right="right === 3"
-      :flipped="wrongDismissed === 3  || !!finalSelected"
-      :small="wrongDismissed === 3 || (finalSelected && finalSelected !== 3)"
-      :gradient-color="getGradientColor(3)"
-      @click="select(3)" />
+    <div class="doors">
+      <door
+        :number="1"
+        :selected="selected === 1"
+        :right="right === 1"
+        :flipped="wrongDismissed === 1 || !!finalSelected"
+        :small="wrongDismissed === 1 ||  (finalSelected && finalSelected !== 1)"
+        :gradient-color="getGradientColor(1)"
+        @click="select(1)" />
+      <door
+        :number="2"
+        :selected="selected === 2"
+        :right="right === 2"
+        :flipped="wrongDismissed === 2  || !!finalSelected"
+        :small="wrongDismissed === 2 || (finalSelected && finalSelected !== 2)"
+        :gradient-color="getGradientColor(2)"
+        @click="select(2)" />
+      <door
+        :number="3"
+        :selected="selected === 3"
+        :right="right === 3"
+        :flipped="wrongDismissed === 3  || !!finalSelected"
+        :small="wrongDismissed === 3 || (finalSelected && finalSelected !== 3)"
+        :gradient-color="getGradientColor(3)"
+        @click="select(3)" />
+    </div>
   </div>
 </template>
 
@@ -146,9 +148,13 @@ export default {
   .game {
     width: 100vw;
     height: 100vh;
-    background-color: #052454;
+  }
+
+  .doors {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    height: 100%;
+    background-color: #052454;
   }
 </style>
