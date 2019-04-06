@@ -1,6 +1,13 @@
 <template>
-  <div class="door" @click="click">
-    <div class="card" :class="{ selected: selected, flipped: flipped, right: right, small: small }">
+  <div class="door" @click="click" :style="`--gradient-color: ${animatedColor}`">
+    <div
+      class="card"
+      :class="{
+        selected: selected,
+        flipped: flipped,
+        right: right,
+        small: small
+      }">
       <div class="card__face card__face--front">{{ number }}</div>
       <div class="card__face card__face--back" v-if="right">
         100 000<br/>
@@ -12,8 +19,13 @@
 </template>
 
 <script>
+import { TweenLite } from 'gsap/TweenMax';
+
 export default {
   name: 'door',
+  data: () => ({
+    tweenedGradientColor: {},
+  }),
   props: {
     number: Number,
     selected: {
@@ -32,10 +44,33 @@ export default {
       type: Boolean,
       default: false,
     },
+    gradientColor: {
+      type: Object,
+      default: () => ({
+        red: 0,
+        green: 0,
+        blue: 0,
+        alpha: 0.25,
+      }),
+    },
   },
   methods: {
     click() {
       this.$emit('click');
+    },
+  },
+  created: function () {
+    this.tweenedGradientColor = Object.assign({}, this.gradientColor)
+  },
+  computed: {
+    animatedColor() {
+      const { red, green, blue, alpha } = this.tweenedGradientColor;
+      return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+    },
+  },
+  watch: {
+    gradientColor(value) {
+      TweenLite.to(this.$data.tweenedGradientColor, 1, value);
     },
   },
 };
@@ -44,8 +79,16 @@ export default {
 <style lang="scss" scoped>
   .door {
     perspective: 600px;
-    margin: 16px;
-    cursor: pointer;
+    margin: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: background 1s;
+    background: linear-gradient(
+      90deg,
+      rgba(0,0,0,0) 0%,
+      var(--gradient-color) 50%,
+      rgba(0,0,0,0) 100%);
   }
 
   .card {
@@ -54,6 +97,7 @@ export default {
     position: relative;
     transition: transform 1s, width 1s, height 1s;
     transform-style: preserve-3d;
+    cursor: pointer;
   }
 
   .card.small {
