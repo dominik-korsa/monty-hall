@@ -47,7 +47,7 @@ export default {
     window.addEventListener('keydown', this.onkey);
   },
   beforeDestroy() {
-    window.removeEventListener('keydown', this.onkey)
+    window.removeEventListener('keydown', this.onkey);
   },
   methods: {
     onkey(event) {
