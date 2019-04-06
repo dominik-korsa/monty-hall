@@ -1,5 +1,6 @@
 <template>
   <div class="game">
+    <stats></stats>
     <div class="doors">
       <door
         :number="1"
@@ -31,10 +32,12 @@
 
 <script>
 import Door from '@/components/game/Door.vue';
+import Stats from '@/components/game/Stats.vue';
 
 export default {
   components: {
     Door,
+    Stats,
   },
   data: () => ({
     disabled: false,
@@ -174,13 +177,15 @@ export default {
   .game {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   .doors {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    height: 100%;
     background-color: #052454;
+    flex-grow: 1;
   }
 </style>
