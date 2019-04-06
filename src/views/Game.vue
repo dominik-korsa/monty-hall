@@ -41,7 +41,18 @@ export default {
     wrongDismissed: null,
     finalSelected: null,
   }),
+  created() {
+    window.addEventListener('keydown', this.onkey);
+  },
+  beforeDestroy() {
+    window.removeEventListener('keydown', this.onkey)
+  },
   methods: {
+    onkey(event) {
+      if (event.key === '1') this.select(1);
+      else if (event.key === '2') this.select(2);
+      else if (event.key === '3') this.select(3);
+    },
     reset() {
       this.selected = null;
       this.wrongDismissed = null;
