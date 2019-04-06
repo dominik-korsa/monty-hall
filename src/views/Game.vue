@@ -58,10 +58,12 @@ export default {
   }),
   computed: {
     switchedWinRate() {
-      return this.stats.switched.wins / (this.stats.switched.wins + this.stats.switched.loses);
+      const { wins, loses } = this.stats.switched;
+      return wins / (wins + loses);
     },
     notSwitchedWinRate() {
-      return this.stats.notSwitched.wins / (this.stats.notSwitched.wins + this.stats.notSwitched.loses);
+      const { wins, loses } = this.stats.notSwitched;
+      return wins / (wins + loses);
     },
   },
   created() {
