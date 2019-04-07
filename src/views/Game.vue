@@ -1,6 +1,6 @@
 <template>
   <div class="game">
-    <stats :hidden="statsHidden"></stats>
+    <stats></stats>
     <div class="doors">
       <door
         :number="1"
@@ -78,7 +78,6 @@ export default {
       if (event.key === '1') this.select(1);
       else if (event.key === '2') this.select(2);
       else if (event.key === '3') this.select(3);
-      else if (event.key === 's') this.statsHidden = !this.statsHidden;
     },
     reset() {
       this.selected = null;
